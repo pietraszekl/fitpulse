@@ -12,8 +12,8 @@ import Video from "@/components/Video";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Free Next.js Template for Startup and SaaS",
-  description: "This is Home for Startup Nextjs Template",
+  title: "FitPulse - Aplikacja dla trenerów i podopiecznych",
+  description: "Buduj społeczność wokół swojej osoby, oszczędzaj czas i zwiększaj zyski. Pomagaj swoim podopiecznym osiągać cele treningowe z łatwością i skutecznością.",
   // other metadata
 };
 
@@ -24,12 +24,12 @@ export default function Home() {
       <Hero />
       <Features />
       <Video />
-      <Brands />
-      <AboutSectionOne />
-      <AboutSectionTwo />
-      <Testimonials />
+      {/* <Brands /> */}
+      {/* <AboutSectionOne />
+      <AboutSectionTwo /> */}
+      {/* <Testimonials />
       <Pricing />
-      <Blog />
+      <Blog /> */}
       <Contact />
     </>
   );

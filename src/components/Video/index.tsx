@@ -13,8 +13,9 @@ const Video = () => {
     <section className="relative z-10 py-16 md:py-20 lg:py-28">
       <div className="container">
         <SectionTitle
-          title="We are ready to help"
-          paragraph="There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration in some form."
+          title="JESTEŚMY TU BY CI POMÓC"
+          paragraph="W FitPulse rozumiemy, że tworzenie i prowadzenie aplikacji fitness może być wyzwaniem. Dlatego oferujemy naszym klientom pełne wsparcie ze strony profesjonalnego zespołu developerów i dedykowanego project mangera (osobę do bezpośredniego kontaktu) 
+"
           center
           mb="80px"
         />
