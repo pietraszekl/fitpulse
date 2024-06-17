@@ -8,8 +8,8 @@ const Features = () => {
       <section id="features" className="py-16 md:py-20 lg:py-28">
         <div className="container">
           <SectionTitle
-            title="Zalety"
-            paragraph="Oto najważniejsze zalety cechujące nasze rozwiązanie"
+            title="Dlaczego FitPulse?"
+            paragraph="Jesteśmy dla Ciebie - upewniamy się, że wszystko wygląda i działa tak jak powinno, jesteśmy gotowi pomóc w każdej chwili."
             center
           />
 
