@@ -1,19 +1,19 @@
-"use client";
+'use client'
 
-import Image from "next/image";
-import { useState } from "react";
-import SectionTitle from "../Common/SectionTitle";
+import Image from 'next/image'
+import { useState } from 'react'
+import SectionTitle from '../Common/SectionTitle'
 
-import ModalVideo from "react-modal-video";
+import ModalVideo from 'react-modal-video'
 
 const Video = () => {
-  const [isOpen, setOpen] = useState(false);
+  const [isOpen, setOpen] = useState(false)
 
   return (
     <section className="relative z-10 py-16 md:py-20 lg:py-28">
       <div className="container">
         <SectionTitle
-          title="JESTEŚMY TU BY CI POMÓC"
+          title="JESTEŚMY TU DLA WAS"
           paragraph="W FitPulse rozumiemy, że tworzenie i prowadzenie aplikacji fitness może być wyzwaniem. Dlatego oferujemy naszym klientom pełne wsparcie ze strony profesjonalnego zespołu developerów i dedykowanego project mangera (osobę do bezpośredniego kontaktu) 
 "
           center
@@ -61,7 +61,7 @@ const Video = () => {
 
       <div className="absolute bottom-0 left-0 right-0 z-[-1] h-full w-full bg-[url(/images/video/shape.svg)] bg-cover bg-center bg-no-repeat"></div>
     </section>
-  );
-};
+  )
+}
 
-export default Video;
+export default Video
