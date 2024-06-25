@@ -1,11 +1,74 @@
 "use client";
 
 import { useTheme } from "next-themes";
+import Link from "next/link";
+import { useState } from "react";
+
+const newsletter = {
+  "enable": false,
+  "title": "Newsletter",
+  "content": "Dołącz do grona naszych subskrybentów i co tydzień otrzymuj najnowsze informacje ze świata eCommerce i SEO.",
+  "privacy_policy_page": "#",
+  "malichipm_url": ""
+}
 
 const NewsLatterBox = () => {
   const { theme } = useTheme();
+  const [email, setEmail] = useState('')
+  const [errors, setErrors] = useState({})
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false)
+  const [showFailureMessage, setShowFailureMessage] = useState(false)
+  const handleValidation = () => {
+    let tempErrors = {}
+    let isValid = true
+
+
+    if (email.length <= 0) {
+      tempErrors['email'] = true
+      isValid = false
+    }
+
+
+    setErrors({ ...tempErrors })
+    return isValid
+  }
+
+  const handleSubmit = async (e) => {
+    debugger;
+    console.log("e",e)
+    e.preventDefault();
+    let isValidForm = handleValidation()
+
+    if (isValidForm) {
+      debugger;
+    const res = await fetch('/api/mailchimp', {
+      body: JSON.stringify({
+        email: email,
+      }),
+
+      headers: {
+        'Content-Type': 'application/json',
+      },
+
+      method: 'POST',
+    });
+
+
+    const { error } = await res.json();
+    if (error) {
+      setShowSuccessMessage(false)
+      setShowFailureMessage(true)
+      return
+    }
+  }
+  setShowSuccessMessage(true)
+  setShowFailureMessage(false)
+  };
 
   return (
+
+
+        
     <div className="relative z-10 rounded-sm bg-white p-8 shadow-three dark:bg-gray-dark sm:p-11 lg:p-8 xl:p-11">
       <h3 className="mb-4 text-2xl font-bold leading-tight text-black dark:text-white">
         Subscribe to receive future updates
@@ -14,16 +77,15 @@ const NewsLatterBox = () => {
         Lorem ipsum dolor sited Sed ullam corper consectur adipiscing Mae ornare
         massa quis lectus.
       </p>
-      <div>
-        <input
-          type="text"
-          name="name"
-          placeholder="Enter your name"
-          className="border-stroke mb-4 w-full rounded-sm border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-none focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:text-body-color-dark dark:shadow-two dark:focus:border-primary dark:focus:shadow-none"
-        />
+      <form onSubmit={handleSubmit}>
+
         <input
           type="email"
           name="email"
+          onChange={(e) => {
+            setEmail(e.target.value)
+          }}
+          required
           placeholder="Enter your email"
           className="border-stroke mb-4 w-full rounded-sm border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-none focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:text-body-color-dark dark:shadow-two dark:focus:border-primary dark:focus:shadow-none"
         />
@@ -35,7 +97,7 @@ const NewsLatterBox = () => {
         <p className="text-center text-base leading-relaxed text-body-color dark:text-body-color-dark">
           No spam guaranteed, So please don’t send any spam mail.
         </p>
-      </div>
+      </form>
 
       <div>
         <span className="absolute left-2 top-7">
@@ -254,6 +316,7 @@ const NewsLatterBox = () => {
         </span>
       </div>
     </div>
+
   );
 };
 
