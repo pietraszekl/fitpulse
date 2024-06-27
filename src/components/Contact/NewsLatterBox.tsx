@@ -1,19 +1,20 @@
-"use client";
+'use client'
 
-import { useTheme } from "next-themes";
-import Link from "next/link";
-import { useState } from "react";
+import { useTheme } from 'next-themes'
+import Link from 'next/link'
+import { useState } from 'react'
 
 const newsletter = {
-  "enable": false,
-  "title": "Newsletter",
-  "content": "Dołącz do grona naszych subskrybentów i co tydzień otrzymuj najnowsze informacje ze świata eCommerce i SEO.",
-  "privacy_policy_page": "#",
-  "malichipm_url": ""
+  enable: false,
+  title: 'Newsletter',
+  content:
+    'Dołącz do grona naszych subskrybentów i co tydzień otrzymuj najnowsze informacje ze świata eCommerce i SEO.',
+  privacy_policy_page: '#',
+  malichipm_url: ''
 }
 
 const NewsLatterBox = () => {
-  const { theme } = useTheme();
+  const { theme } = useTheme()
   const [email, setEmail] = useState('')
   const [errors, setErrors] = useState({})
   const [showSuccessMessage, setShowSuccessMessage] = useState(false)
@@ -22,63 +23,55 @@ const NewsLatterBox = () => {
     let tempErrors = {}
     let isValid = true
 
-
     if (email.length <= 0) {
       tempErrors['email'] = true
       isValid = false
     }
-
 
     setErrors({ ...tempErrors })
     return isValid
   }
 
   const handleSubmit = async (e) => {
-    debugger;
-    console.log("e",e)
-    e.preventDefault();
+    debugger
+    console.log('e', e)
+    e.preventDefault()
     let isValidForm = handleValidation()
 
     if (isValidForm) {
-      debugger;
-    const res = await fetch('/api/mailchimp', {
-      body: JSON.stringify({
-        email: email,
-      }),
+      debugger
+      const res = await fetch('/api/mailchimp', {
+        body: JSON.stringify({
+          email: email
+        }),
 
-      headers: {
-        'Content-Type': 'application/json',
-      },
+        headers: {
+          'Content-Type': 'application/json'
+        },
 
-      method: 'POST',
-    });
+        method: 'POST'
+      })
 
-
-    const { error } = await res.json();
-    if (error) {
-      setShowSuccessMessage(false)
-      setShowFailureMessage(true)
-      return
+      const { error } = await res.json()
+      if (error) {
+        setShowSuccessMessage(false)
+        setShowFailureMessage(true)
+        return
+      }
     }
+    setShowSuccessMessage(true)
+    setShowFailureMessage(false)
   }
-  setShowSuccessMessage(true)
-  setShowFailureMessage(false)
-  };
 
   return (
-
-
-        
     <div className="relative z-10 rounded-sm bg-white p-8 shadow-three dark:bg-gray-dark sm:p-11 lg:p-8 xl:p-11">
       <h3 className="mb-4 text-2xl font-bold leading-tight text-black dark:text-white">
-        Subscribe to receive future updates
+        Newsletter
       </h3>
-      <p className="mb-11 border-b border-body-color border-opacity-25 pb-11 text-base leading-relaxed text-body-color dark:border-white dark:border-opacity-25">
-        Lorem ipsum dolor sited Sed ullam corper consectur adipiscing Mae ornare
-        massa quis lectus.
+      <p className=" pb-4 text-base leading-relaxed text-body-color ">
+        Zasubskrybuj, aby otrzymywać przyszłe aktualizacje
       </p>
       <form onSubmit={handleSubmit}>
-
         <input
           type="email"
           name="email"
@@ -86,17 +79,17 @@ const NewsLatterBox = () => {
             setEmail(e.target.value)
           }}
           required
-          placeholder="Enter your email"
+          placeholder="email@address.com"
           className="border-stroke mb-4 w-full rounded-sm border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-none focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:text-body-color-dark dark:shadow-two dark:focus:border-primary dark:focus:shadow-none"
         />
         <input
           type="submit"
-          value="Subscribe"
+          value="Zapisz się"
           className="mb-5 flex w-full cursor-pointer items-center justify-center rounded-sm bg-primary px-9 py-4 text-base font-medium text-white shadow-submit duration-300 hover:bg-primary/90 dark:shadow-submit-dark"
         />
-        <p className="text-center text-base leading-relaxed text-body-color dark:text-body-color-dark">
+        {/* <p className="text-center text-base leading-relaxed text-body-color dark:text-body-color-dark">
           No spam guaranteed, So please don’t send any spam mail.
-        </p>
+        </p> */}
       </form>
 
       <div>
@@ -123,12 +116,12 @@ const NewsLatterBox = () => {
                 gradientUnits="userSpaceOnUse"
               >
                 <stop
-                  stopColor={theme === "light" ? "#4A6CF7" : "#fff"}
+                  stopColor={theme === 'light' ? '#4A6CF7' : '#fff'}
                   stopOpacity="0.62"
                 />
                 <stop
                   offset="1"
-                  stopColor={theme === "light" ? "#4A6CF7" : "#fff"}
+                  stopColor={theme === 'light' ? '#4A6CF7' : '#fff'}
                   stopOpacity="0"
                 />
               </linearGradient>
@@ -159,12 +152,12 @@ const NewsLatterBox = () => {
                 gradientUnits="userSpaceOnUse"
               >
                 <stop
-                  stopColor={theme === "light" ? "#4A6CF7" : "#fff"}
+                  stopColor={theme === 'light' ? '#4A6CF7' : '#fff'}
                   stopOpacity="0.62"
                 />
                 <stop
                   offset="1"
-                  stopColor={theme === "light" ? "#4A6CF7" : "#fff"}
+                  stopColor={theme === 'light' ? '#4A6CF7' : '#fff'}
                   stopOpacity="0"
                 />
               </linearGradient>
@@ -195,12 +188,12 @@ const NewsLatterBox = () => {
                 gradientUnits="userSpaceOnUse"
               >
                 <stop
-                  stopColor={theme === "light" ? "#4A6CF7" : "#fff"}
+                  stopColor={theme === 'light' ? '#4A6CF7' : '#fff'}
                   stopOpacity="0.62"
                 />
                 <stop
                   offset="1"
-                  stopColor={theme === "light" ? "#4A6CF7" : "#fff"}
+                  stopColor={theme === 'light' ? '#4A6CF7' : '#fff'}
                   stopOpacity="0"
                 />
               </linearGradient>
@@ -249,11 +242,11 @@ const NewsLatterBox = () => {
               >
                 <stop
                   offset="0.328125"
-                  stopColor={theme === "light" ? "#4A6CF7" : "#fff"}
+                  stopColor={theme === 'light' ? '#4A6CF7' : '#fff'}
                 />
                 <stop
                   offset="1"
-                  stopColor={theme === "light" ? "#4A6CF7" : "#fff"}
+                  stopColor={theme === 'light' ? '#4A6CF7' : '#fff'}
                   stopOpacity="0"
                 />
               </linearGradient>
@@ -267,11 +260,11 @@ const NewsLatterBox = () => {
               >
                 <stop
                   offset="0.328125"
-                  stopColor={theme === "light" ? "#4A6CF7" : "#fff"}
+                  stopColor={theme === 'light' ? '#4A6CF7' : '#fff'}
                 />
                 <stop
                   offset="1"
-                  stopColor={theme === "light" ? "#4A6CF7" : "#fff"}
+                  stopColor={theme === 'light' ? '#4A6CF7' : '#fff'}
                   stopOpacity="0"
                 />
               </linearGradient>
@@ -285,11 +278,11 @@ const NewsLatterBox = () => {
               >
                 <stop
                   offset="0.328125"
-                  stopColor={theme === "light" ? "#4A6CF7" : "#fff"}
+                  stopColor={theme === 'light' ? '#4A6CF7' : '#fff'}
                 />
                 <stop
                   offset="1"
-                  stopColor={theme === "light" ? "#4A6CF7" : "#fff"}
+                  stopColor={theme === 'light' ? '#4A6CF7' : '#fff'}
                   stopOpacity="0"
                 />
               </linearGradient>
@@ -303,11 +296,11 @@ const NewsLatterBox = () => {
               >
                 <stop
                   offset="0.328125"
-                  stopColor={theme === "light" ? "#4A6CF7" : "#fff"}
+                  stopColor={theme === 'light' ? '#4A6CF7' : '#fff'}
                 />
                 <stop
                   offset="1"
-                  stopColor={theme === "light" ? "#4A6CF7" : "#fff"}
+                  stopColor={theme === 'light' ? '#4A6CF7' : '#fff'}
                   stopOpacity="0"
                 />
               </linearGradient>
@@ -316,8 +309,7 @@ const NewsLatterBox = () => {
         </span>
       </div>
     </div>
+  )
+}
 
-  );
-};
-
-export default NewsLatterBox;
+export default NewsLatterBox
